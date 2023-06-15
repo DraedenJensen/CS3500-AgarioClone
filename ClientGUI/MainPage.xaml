@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Authors : Draeden Jensen & Derek Kober
+     Date : 4/13/2023
+     Course:    CS 3500, University of Utah, School of Computing
+     Copyright: CS 3500, Draeden Jensen & Derek Kober - This work may not 
+                be copied for use in Academic Coursework.
+
+    Draeden Jensen & Derek Kober, certify that we wrote this code from scratch and
+    did not copy it in part or whole from another source.  All 
+    references used in the completion of the assignments are cited 
+    in my README file.
+
+    File Contents: This file sets up the GUI, which is used to show the game for Assignment 8.
+-->
+    
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ClientGUI.MainPage">
+
+    <StackLayout>
+        <ScrollView
+            x:Name="WelcomeScreen"
+            IsVisible="true">
+            <VerticalStackLayout
+                Spacing="25"
+                Padding="30,0"
+                VerticalOptions="Center">
+                <Label WidthRequest="250" HorizontalOptions="Center" Padding="10" FontSize="50" Text="Agario" HorizontalTextAlignment="Center"/>
+                <Label x:Name="GameInfo" WidthRequest="250" HorizontalOptions="Center" Padding="10" HorizontalTextAlignment="Center"/>
+                <HorizontalStackLayout HorizontalOptions="Center" Padding="15">
+                    <Label
+                        VerticalOptions="Center"
+                        Text="Player Name   "/>
+                    <Entry
+                        x:Name="PlayerName"
+                        Margin="15"
+                        WidthRequest="250"
+                        VerticalOptions="Center"
+                        Placeholder ="What is your name?"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center" Padding="15">
+                    <Label
+                        VerticalOptions="Center"
+                        Text="Server"/>
+                    <Entry 
+                        x:Name ="ServerAddress"
+                        Margin="15"
+                        WidthRequest="250"
+                        VerticalOptions="Center"
+                        Text="localhost"/>
+                </HorizontalStackLayout>
+                <Button
+                    x:Name="ConnectButton"
+                    Margin="15"
+                    HorizontalOptions="Center"
+                    WidthRequest="250"
+                    Text="Connect"
+                    Clicked ="OnConnectClicked">
+                </Button>
+                <Editor
+                    x:Name="ErrorBox"
+                    Margin="15"
+                    HorizontalOptions="Center"
+                    WidthRequest="800"
+                    HeightRequest="90"
+                    IsReadOnly="true">
+                </Editor>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ScrollView
+            x:Name="WorldScreen"
+            IsVisible="false"
+            Padding="30">
+            <GraphicsView
+                    x:Name="PlaySurface"
+                    VerticalOptions="Center"
+                    HeightRequest="600"
+                    WidthRequest="1200">
+                <GraphicsView.GestureRecognizers>
+                <PointerGestureRecognizer x:Name="Pointer" PointerMoved="PointerChanged"/>
+                <TapGestureRecognizer 
+                            Tapped="PointerTapped"
+                            NumberOfTapsRequired="1" />
+            </GraphicsView.GestureRecognizers>
+            </GraphicsView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
